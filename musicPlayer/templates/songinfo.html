@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div style="margin: 10px auto; width: 90%;">
+        <h1 style="text-align: center;">Song Information</h1>
+    </div>
+
+    {% if messages %}
+    <ul class="messages" style="width: 600px;margin-left:400px">
+        {% for message in messages %}
+        <div class="alert alert-success">
+            <strong> {{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+
+    <table style="width: 100%; text-align: center;">
+        <tr>
+            <th>Song Title</th>
+            <th>Singer Name</th>
+            <th>Album Name</th>
+            <th>Duration</th>
+            {% if user.is_authenticated %}
+            <th colspan="2" >Action</th>
+            {% endif %}
+        </tr>
+             {% for song in songs %}
+        <tr>
+            <td>{{  song.song_title }}</td>
+            <td>{{  song.singer_name }}</td>
+            <td><a href="{% url 'album' song.album_name  %}">{{  song.album_name }}</a></td>
+            <td>{{  song.duration }}</td>
+        {% if user.is_authenticated %}
+            {% if status == "Add To Playlist" %}
+            <td>
+                <form method="post">
+                    {% csrf_token %}
+                    <button style="margin-left: 10px;width: 170px;" onChange="form.submit();" class="btn btn-success" >
+                        {{status}}
+                    </button>
+                </form>
+            </td>
+            {% endif %}
+            {% if status == "My Playlist" %}
+            <td>
+                <a style="text-decoration: none" href="{% url 'myplaylists' %}">
+                    <button style="margin-left: 10px;width: 170px;" class="btn btn-success">
+                        {{status}}
+                    </button>
+                </a>
+            </td>
+            {% endif %}
+        {% endif %}
+        </tr>
+        {% endfor %} 
+    </table>
+
+
+{% endblock %}

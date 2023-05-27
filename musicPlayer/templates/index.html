@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div style="margin: 10px auto; width: 90%;">
+        <h1 style="text-align: center;">Listen your favourite songs!</h1>
+    </div>
+    <form>
+        <div class="input-group mb-3">
+            <input type="search" class="form-control" name="q" placeholder="Search the song name" aria-label="Search the song name" aria-describedby="song search">
+            <div class="input-group-append">
+              <button class="input-group-text" id="search-button" type="submit">Search</button>
+            </div>
+          </div>
+    </form>
+
+    {% if lensongs > 0 %}
+    <table style="width: 100%; text-align: center;">
+        <tr>
+            <th>Song Title</th>
+            <th>Duration</th>
+            {% if user.is_authenticated %}
+            <th colspan="2" >Action</th>
+            {% endif %}
+        </tr>
+             {% for song in songs %}
+        <tr>
+            <td>{{  song.song_title }}</td>
+            <td>{{  song.duration }}</td>
+            {% if user.is_authenticated %}
+            <td>
+                <a style="text-decoration: none" href="{% url 'songinfo' song.id %}">
+                    <button style="margin-left: 10px;width: 170px;" class="btn btn-warning">
+                        Song Info
+                    </button>
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %} 
+    </table>
+    {% endif %}
+
+    {% if lensongs == 0 %}
+    <div style="text-align: center;">
+        No Result Found
+    </div>
+    {% endif %}
+
+
+{% endblock %}

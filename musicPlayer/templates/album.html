@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div style="margin: 10px auto; width: 90%;">
+        <h1 style="text-align: center;">Album : {{  album_name }}</h1>
+    </div>
+    
+
+    <table style="width: 100%; text-align: center;">
+        <tr>
+            <th>Song Title</th>
+            <th>Singer Name</th>
+            <th>Duration</th>
+        </tr>
+             {% for song in songs %}
+        <tr>
+            <td>{{  song.song_title }}</td>
+            <td>{{  song.singer_name }}</td>
+            <td>{{  song.duration }}</td>
+        </tr>
+        {% endfor %} 
+    </table>
+
+
+{% endblock %}

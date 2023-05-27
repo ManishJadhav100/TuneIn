@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div style="margin: 10px auto; width: 90%;">
+        <h1 style="text-align: center;">My Playlist</h1>
+    </div>
+
+    
+    {% if messages %}
+    <ul class="messages" style="width: 600px;margin-left:400px">
+        {% for message in messages %}
+        <div class="alert alert-success">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if lensongs == 0 %}
+    <div style="text-align: center;">
+        Playlist is emplty
+    </div>
+    {% endif %}
+    {% if lensongs > 0 %}
+    <table style="width: 100%; text-align: center;">
+        <tr>
+            <th>Song Title</th>
+            <th>Singer Name</th>
+            <th>Album Name</th>
+            <th>Duration</th>
+            {% if user.is_authenticated %}
+            <th colspan="2" >Action</th>
+            {% endif %}
+        </tr>
+        {% for song in songs %}
+        <tr>
+            <td>{{  song.song_title }}</td>
+            <td>{{  song.singer_name }}</td>
+            <td><a href="{% url 'album' song.album_name  %}">{{  song.album_name }}</a></td>
+            <td>{{  song.duration }}</td>
+            {% if user.is_authenticated %}
+            <td>
+                <form method="post">
+                    {% csrf_token %}
+                    <button style="margin-left: 10px;width: 170px;" type="submit" name={{song.id}} class="btn btn-danger">
+                        Remove From Playlist
+                    </button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %} 
+
+        {% for song in shufflesongs %}
+        <tr>
+            <td>{{  song.song_title }}</td>
+            <td>{{  song.singer_name }}</td>
+            <td>{{  song.album_name }}</td>
+            <td>{{  song.duration }}</td>
+            {% if user.is_authenticated %}
+            <td>
+                <form method="post">
+                    {% csrf_token %}
+                    <button style="margin-left: 10px;width: 170px;" type="submit" name={{song.id}} class="btn btn-danger">
+                        Remove From Playlist
+                    </button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %} 
+    </table>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <button style="width: 170px;position: relative;float: right;top: 10px;" type="submit" name="Shuffle" class="btn btn-primary">
+            Shuffle
+        </button>
+    </form>
+    
+
+{% endblock %}

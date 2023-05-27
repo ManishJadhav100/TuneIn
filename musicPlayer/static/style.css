@@ -1,0 +1,23 @@
+h1 {
+    color: black;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px
+  }
+
+.edit-button {
+    color:#FFFFFF;
+    background-color: #224933;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.delete-button {
+    color: #FFFFFF;
+    background-color: red;
+    text-decoration: none;
+    padding: 5px;
+}
