@@ -1,12 +1,12 @@
-TuneIn Music Player App
+<h1>TuneIn Music Player App</h1>
 
-Django ORM Aplication
+<h3>Django ORM Aplication</h3>
 
 1)Install django using below command. 
-pip install django
+<b>pip install django</b>
 
 2)Run Django server at default port localhost:8000 using below command. 
-python manage.py runserver
+<b>python manage.py runserver</b>
 
 3)Application deployed on pythonanywhere server
 <a>https://tuneinmusic.pythonanywhere.com/</a>
