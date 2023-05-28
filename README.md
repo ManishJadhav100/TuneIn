@@ -20,7 +20,8 @@ Application Overview:
 6) User can shuffle there playlist by clicking on shuffle button.
 7) By clicking on any album name they will redirect to that album page where they can see all songs related to that album.
 
-
+<b>Database Schema Diagram:</b>
+![image](https://github.com/ManishJadhav100/TuneIn/assets/54273848/1a9286d1-e354-49d7-a92e-cbb06b48c770)
 
 
 
