@@ -91,7 +91,7 @@ def album(request, album_name):
     songs = Song.objects.filter(album_name=album_name)
     print(songs)
     context = {'songs': songs, 'album_name': album_name}
-    return render(request, 'album.html', {'songs': songs})
+    return render(request, 'album.html', context=context)
 
 
 
